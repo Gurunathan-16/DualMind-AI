@@ -1,0 +1,9 @@
+transformers
+torch
+accelerate
+streamlit
+groq
+python-dotenv
+pandas
+matplotlib
+deepeval
