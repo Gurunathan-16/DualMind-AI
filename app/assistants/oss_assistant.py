@@ -1,39 +1,55 @@
 from transformers import pipeline
 
 class OSSAssistant:
+
     def __init__(self):
 
         self.pipe = pipeline(
             "text-generation",
-            model="Qwen/Qwen2.5-0.5B-Instruct",
-            device_map="auto"
+            model="Qwen/Qwen2.5-0.5B-Instruct"
         )
 
-        self.history = []
+        self.memory = []
 
-    def chat(self, user_message):
+    def chat(self, user_input):
 
-        self.history.append({
-            "role": "user",
-            "content": user_message
-        })
+        # Save user input
+        self.memory.append(
+            f"User: {user_input}"
+        )
 
-        prompt = ""
+        # Short memory
+        conversation = "\n".join(
+            self.memory[-4:]
+        )
 
-        for msg in self.history[-6:]:
-            prompt += f"{msg['role']}: {msg['content']}\n"
+        # Proper assistant prompt
+        prompt = f"""
+    ```
 
+    You are a helpful AI assistant.
+
+    {conversation}
+
+    Assistant:
+    """
+        # Generate
         result = self.pipe(
             prompt,
-            max_new_tokens=150,
-            temperature=0.7
+            max_new_tokens=50,
+            temperature=0.3,
+            return_full_text=False
         )
 
-        response = result[0]["generated_text"]
+        response = result[0]["generated_text"].strip()
 
-        self.history.append({
-            "role": "assistant",
-            "content": response
-        })
+        # Clean bad outputs
+        response = response.replace("User:", "")
+        response = response.replace("Assistant:", "")
+
+        # Save response
+        self.memory.append(
+            f"Assistant: {response}"
+        )
 
         return response
