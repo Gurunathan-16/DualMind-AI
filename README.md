@@ -1,45 +1,73 @@
-# DualMind AI — OSS vs Frontier AI Assistant Comparison
+# 🤖 DualMind AI – OSS vs Frontier AI Assistant Evaluation
 
-## Overview
+DualMind AI is an AI assistant comparison project that evaluates the performance of:
 
-DualMind AI is a comparative AI assistant platform that evaluates the performance, safety, latency, and reliability of:
+* Open Source LLM Assistants
+* Frontier Hosted AI Models
 
-* Open Source LLM Assistant
-* Frontier Hosted LLM Assistant
+The project demonstrates:
 
-The project was built as part of an AI evaluation assignment to compare real-world behavior between local/open-source models and hosted foundation models.
+* multi-turn conversations
+* conversational memory
+* assistant-style interactions
+* evaluation pipelines
+* hallucination/safety analysis
+* latency comparison
 
 ---
 
-# Features
+# 🚀 Features
 
-## Open Source Assistant
+## ✅ Open Source Assistant
 
-* Built using Hugging Face Transformers
-* Supports multi-turn conversations
-* Maintains short-term memory/context
-* Lightweight assistant behavior
+Built using:
 
-## Frontier Assistant
+* Qwen 2.5 Instruct
+* Hugging Face Transformers
 
-* Built using Groq API
-* Uses hosted foundation model
-* Supports conversational memory
-* Fast inference latency
+Capabilities:
 
-## Evaluation System
+* multi-turn chat
+* conversational memory
+* lightweight inference
+* local/open-source deployment
 
-The assistants are evaluated on:
+---
+
+## ✅ Frontier Assistant
+
+Built using:
+
+* Groq API
+* Llama 3.3 / Hosted Frontier Model
+
+Capabilities:
+
+* high-quality responses
+* low latency inference
+* advanced conversational ability
+
+---
+
+# 📊 Evaluation Metrics
+
+The project compares both assistants using:
 
 * Hallucination Rate
 * Bias & Harmful Outputs
-* Jailbreak Resistance
-* Safety & Refusal Handling
-* Latency Comparison
+* Content Safety
+* Latency
+* Response Quality
+
+Evaluation categories include:
+
+* factual prompts
+* adversarial prompts
+* bias-sensitive prompts
 
 ---
 
-# Tech Stack
+# 🖥️ Tech Stack
 
 * Python
 * Streamlit
@@ -50,50 +78,64 @@ The assistants are evaluated on:
 
 ---
 
-# Project Structure
+# 📁 Project Structure
 
-```bash
+```text
 DualMind AI/
 │
 ├── app/
 │   ├── assistants/
+│   │   ├── oss_assistant.py
+│   │   └── frontier_assistant.py
+│   │
 │   ├── evals/
+│   │   ├── evaluate.py
+│   │   └── charts.py
+│   │
 │   └── ui.py
 │
 ├── reports/
 │   └── charts/
 │
 ├── evaluation_results.csv
+├── README.md
+├── REPORT.md
 ├── requirements.txt
-└── README.md
+└── .env.example
 ```
 
 ---
 
-# Installation
+# ⚙️ Setup Instructions
 
-## Clone Repository
+## 1. Clone Repository
 
 ```bash
-git clone <your-repo-url>
+git clone <YOUR_REPO_LINK>
 cd DualMind-AI
 ```
 
-## Create Virtual Environment
+---
 
-```bash
-python -m venv venv
-```
-
-## Activate Environment
+## 2. Create Virtual Environment
 
 ### Windows
 
 ```bash
-venv\Scripts\activate
+python -m venv venv
+venv\\Scripts\\activate
 ```
 
-## Install Dependencies
+### Linux / Mac
+
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
+
+---
+
+## 3. Install Dependencies
 
 ```bash
 pip install -r requirements.txt
@@ -101,9 +143,9 @@ pip install -r requirements.txt
 
 ---
 
-# Environment Variables
+# 🔑 Environment Variables
 
-Create `.env` file:
+Create a `.env` file:
 
 ```env
 GROQ_API_KEY=your_groq_api_key
@@ -111,7 +153,35 @@ GROQ_API_KEY=your_groq_api_key
 
 ---
 
-# Run Application
+# ▶️ Run Evaluation
+
+```bash
+python -m app.evals.evaluate
+```
+
+This generates:
+
+```text
+evaluation_results.csv
+```
+
+---
+
+# 📈 Generate Charts
+
+```bash
+python -m app.evals.charts
+```
+
+Charts are saved inside:
+
+```text
+reports/charts/
+```
+
+---
+
+# 💬 Run Streamlit UI
 
 ```bash
 streamlit run app/ui.py
@@ -119,85 +189,91 @@ streamlit run app/ui.py
 
 ---
 
-# Run Evaluation
+# 📷 Demo
 
-```bash
-python -m app.evals.evaluate
-```
+The application supports:
 
----
-
-# Generate Charts
-
-```bash
-python -m app.evals.charts
-```
+* assistant switching
+* conversational chat
+* evaluation viewing
+* response comparison
 
 ---
 
-# Evaluation Categories
+# 📊 Sample Evaluation Areas
 
-## Factual Prompts
-
-Tests factual accuracy and hallucination behavior.
-
-## Jailbreak Prompts
-
-Tests harmful prompt resistance and refusal handling.
-
-## Bias Prompts
-
-Tests fairness and harmful stereotypes.
+| Metric        | Description                           |
+| ------------- | ------------------------------------- |
+| Hallucination | Incorrect/generated false information |
+| Safety        | Harmful or unsafe response handling   |
+| Bias          | Stereotypical/discriminatory outputs  |
+| Latency       | Response generation speed             |
 
 ---
 
-# Architecture Decisions
+# ⚖️ OSS vs Frontier Tradeoffs
 
-* Lightweight local OSS model for accessibility
-* Hosted frontier model for performance comparison
-* Streamlit used for rapid prototyping
-* Simple rule-based safety evaluator for baseline benchmarking
-
----
-
-# Tradeoffs
-
-* Lightweight OSS models reduce hardware requirements but lower quality
-* Rule-based evaluation is simple but less accurate than LLM-as-judge methods
-* Memory is short-term only
+| OSS Models     | Frontier Models        |
+| -------------- | ---------------------- |
+| Lower cost     | Higher quality         |
+| Customizable   | Better reasoning       |
+| Deploy locally | Managed infrastructure |
+| Open weights   | Faster responses       |
 
 ---
 
-# Future Improvements
+# 🧠 Architecture Decisions
 
-* Add vector database memory
-* Add tool use and agents
-* Add RAG pipeline
-* Add advanced safety guardrails
-* Deploy OSS model publicly
-* Add observability and tracing
-* Use automated LLM evaluation frameworks
+## Why Qwen 2.5?
 
----
+* lightweight
+* efficient inference
+* strong instruction following
+* suitable for low-resource deployment
 
-# Results Summary
+## Why Groq?
 
-The Frontier Assistant showed:
+* ultra-low latency
+* easy API integration
+* strong hosted inference performance
 
-* Lower latency
-* Better factual consistency
-* Better refusal handling
+## Why Streamlit?
 
-The OSS Assistant showed:
-
-* Lower infrastructure dependency
-* Full local controllability
-* Lower operational cost
+* fast prototyping
+* simple deployment
+* clean interactive UI
 
 ---
 
-# Author
+# 🔒 Safety & Evaluation
+
+The project includes:
+
+* prompt testing
+* harmful prompt evaluation
+* hallucination analysis
+* safety comparison between models
+
+---
+
+# 🔮 Future Improvements
+
+With more time, the following improvements could be added:
+
+* RAG integration
+* long-term memory
+* vector databases
+* tool calling
+* observability dashboards
+* advanced guardrails
+* public deployment with autoscaling
+
+---
+
+# 👨‍💻 Author
 
 Gurunathan R
-M.Sc. Computer Science
-AI/ML Enthusiast
+
+M.Sc Computer Science
+
+AI / ML Enthusiast
